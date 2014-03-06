@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 public class MainActivity extends Activity {
-    public final static String EXTRA_MESSAGE = "com.knarine.csci133.MESSAGE";
 
     TextView input, results;
     private static final String TAG = "CSCI133";
@@ -48,15 +47,18 @@ public class MainActivity extends Activity {
 
     public void getResults(View view){
         String numbers = input.getText().toString();
+
+        // Actual generation of results is hidden in a separate file
         Secret stuff = new Secret();
         String output = stuff.secretStuff(numbers);
+
         results.setText(output);
         enableNumberButtons(true);
     }
 
     public void removeNumber(View view){
         String nums = input.getText().toString();
-        if (nums != ""){
+        if (!nums.equals("")){
             int number = Integer.parseInt(nums);
             int newNumber = number / 10;
             if (newNumber == 0) {
